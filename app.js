@@ -4,16 +4,16 @@ import {getAllUserBills, getUserBillsPaid, getUserBillsNotPaid, getUserID, getUs
 const app = express();
 app.use(express.json());
 
-app.get("/users", async (req, res) => {
-    const rows = await getUsers();
-    res.send(rows)
-});
+// app.get("/users", async (req, res) => {
+//     const rows = await getUsers();
+//     res.send(rows)
+// });
 
-app.get("/users/:id", async (req, res) => {
-    const id = req.params.id
-    const row = await getUserID(id);
-    res.send(row)
-});
+// app.get("/users/:id", async (req, res) => {
+//     const id = req.params.id
+//     const row = await getUserID(id);
+//     res.send(row)
+// });
 
 app.get("/allBills/:id", async (req, res) => {
     const id = req.params.id
@@ -38,6 +38,6 @@ app.use((err, req, res, next) => {
     res.status(500).send('Internal Server Error');
 });
 
-app.listen(8080, () => {
-    console.log('Server is running on port 8080')
+app.listen(5775, () => {
+    console.log('Server is running on port 5775')
 })

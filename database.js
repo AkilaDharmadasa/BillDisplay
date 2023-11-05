@@ -1,5 +1,6 @@
 import mysql from 'mysql2';
 import dotenv from 'dotenv';
+import { Buffer } from 'buffer';
 
 dotenv.config();
 
@@ -17,12 +18,20 @@ export async function getUsers() {
 }
 
 export async function getUserID(id) {
-    const userIDBuffer = Buffer.from(id, 'hex');
+    console.log(id);
+
+    const encoder = new TextEncoder();
+    const userIDBuffer = encoder.encode(id);
+
+    console.log(userIDBuffer);
+
     const [row] = await pool.query(`
-    SELECT * 
-    FROM user
-    WHERE userId = ?
+        SELECT * 
+        FROM user
+        WHERE userId = ?
     `, [userIDBuffer]);
+
+    console.log(row);
     return row;
 }
 
